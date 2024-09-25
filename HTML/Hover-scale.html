@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoverscale</title>
+    <style>
+        body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-auto-flow: column;
+  place-content: center;
+  background: #ffffff;
+}
+
+figure {
+  display: grid;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+figure > * {
+  grid-area: 1/1;
+  transition: .4s;
+}
+figure figcaption {
+  display: grid;
+  align-items: end;
+  font-family: sans-serif;
+  font-size: 2.3rem;
+  font-weight: bold;
+  color: #ffffff;
+  padding: .75rem;
+  background: var(--c,#0009);
+  clip-path: inset(0 var(--_i,100%) 0 0);
+  -webkit-mask:
+    linear-gradient(#000 0 0),
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  -webkit-mask-clip: text, padding-box;
+}
+
+figure:hover figcaption{
+  --_i: 0%;
+}
+figure:hover img {
+  transform: scale(1.2);
+}
+@supports not (-webkit-mask-clip: text) {
+  figure figcaption {
+   -webkit-mask: none;
+   color: #fff;
+  }
+}
+    </style>
+</head>
+<body>
+    <figure>
+        <img src="https://i.pinimg.com/originals/37/b0/4d/37b04da82384352d583ac993e704fb02.gif" alt="Mountains">
+        <figcaption>Good Day</figcaption>
+    </figure>
+</body>
+</html>

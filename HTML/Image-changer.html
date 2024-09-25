@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="style.css">
+    <title>Document</title>
+    <style>
+        body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1e1e1e
+}
+
+#main-wrapper{
+  display: flex;
+}
+img{
+  width: 500px;
+  height: 500px;
+  border-radius: 10px;
+}
+
+.row{
+  display: flex;
+  width: 120px;
+  height: 120px;
+  flex-flow: column;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+
+    </style>
+</head>
+<body>
+
+<div id="main-wrapper">
+    <img name="slide">
+
+    <section class="ImgRow">
+        <img class="row" src="https://i.pinimg.com/originals/4b/29/1d/4b291da9ba6bc3b5a3df6549b4da5c7f.gif">
+        <img class="row" src="https://i.pinimg.com/originals/ba/24/f2/ba24f257a5d37471b0c8d9af18d60032.gif">
+        <img class="row" src="https://i.pinimg.com/originals/ef/8f/f4/ef8ff431794f19ab02d06a2314c1621f.gif">
+        <img class="row" src="https://i.pinimg.com/originals/07/21/06/072106c0be5ef85152a4571abf1d66c2.gif">
+    </section>
+</div>
+
+    <script src="./app.js"></script>
+
+    <script>
+        var i = 0;
+var images = [];
+var time = 2000;
+
+images[0] = 'https://i.pinimg.com/originals/4b/29/1d/4b291da9ba6bc3b5a3df6549b4da5c7f.gif';
+images[1] = 'https://i.pinimg.com/originals/ba/24/f2/ba24f257a5d37471b0c8d9af18d60032.gif';
+images[2] = 'https://i.pinimg.com/originals/ef/8f/f4/ef8ff431794f19ab02d06a2314c1621f.gif';
+images[3] = 'https://i.pinimg.com/originals/07/21/06/072106c0be5ef85152a4571abf1d66c2.gif';
+
+function changeImg(){
+    document.slide.src = images[i];
+
+    if(i < images.length - 1){
+        i++;
+    } else {
+        i = 0
+    }
+
+    setTimeout("changeImg()", time);
+}
+
+window.onload = changeImg;
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #escape-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1em 2em;
+  font-size: 20px;
+  background-color: #3ccce6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: 'IBM Plex Sans';
+  box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(59, 105, 148);
+}
+
+    </style>
+</head>
+
+<body>
+    <button id="escape-button">Click here</button>  
+    <script>
+        var button = document.getElementById("escape-button");
+var proximity = 200;
+var isButtonMoving = false;
+
+function moveButton() {
+  if (isButtonMoving) {
+    return;
+  }
+
+  var viewportWidth = window.innerWidth;
+  var viewportHeight = window.innerHeight;
+  var buttonWidth = button.offsetWidth;
+  var buttonHeight = button.offsetHeight;
+
+  var currentX = parseInt(button.style.left) || 0;
+  var currentY = parseInt(button.style.top) || 0;
+
+  var randomX, randomY;
+  var minDistance = proximity + 50;
+
+  do {
+    randomX = Math.floor(Math.random() * (viewportWidth - buttonWidth));
+    randomY = Math.floor(Math.random() * (viewportHeight - buttonHeight));
+  } while (calculateDistance(currentX, currentY, randomX, randomY) < minDistance);
+
+  if (randomX + buttonWidth > viewportWidth) {
+    randomX = viewportWidth - buttonWidth;
+  }
+  if (randomY + buttonHeight > viewportHeight) {
+    randomY = viewportHeight - buttonHeight;
+  }
+
+  button.style.transition = "left 0.5s, top 0.5s";
+  button.style.left = randomX + "px";
+  button.style.top = randomY + "px";
+
+  isButtonMoving = true;
+
+  button.addEventListener("transitionend", function() {
+    isButtonMoving = false;
+    updateButtonText();
+  }, { once: true });
+}
+
+
+function calculateDistance(mouseX, mouseY, buttonX, buttonY) {
+  var dx = mouseX - buttonX;
+  var dy = mouseY - buttonY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+function updateButtonText() {
+  var texts = [
+    "Catch me",
+    "C'mon, CLICK",
+    "I can do this forever",
+    "You're so close!",
+    "CLICK ON ME",
+    "Oh for God's sake",
+    "Massive L",
+    "Are you just bored?",
+    "Just click...",
+    "You do this everyday",
+    "How hard can it be?",
+    "I'm right HERE",
+    "Click to WIN!!!",
+    "Skill issue...",
+    "Game Over bro",
+    "Catch me if you can",
+    "It's just a button...",
+    "CLICK ME GODDAMIT",
+    "CLICKKKK",
+    "I can't help you",
+    "OVER HERE",
+    "Click me, it's FREE!",
+    "WHAT are you doing?",
+    "OMG 😂",
+  ];
+  var randomText = texts[Math.floor(Math.random() * texts.length)];
+  button.innerHTML = randomText;
+}
+
+document.addEventListener("mousemove", function(event) {
+  var mouseX = event.clientX;
+  var mouseY = event.clientY;
+  var buttonRect = button.getBoundingClientRect();
+  var buttonX = buttonRect.left + button.offsetWidth / 2;
+  var buttonY = buttonRect.top + button.offsetHeight / 2;
+  var distance = calculateDistance(mouseX, mouseY, buttonX, buttonY);
+
+  if (distance < proximity) {
+    moveButton();
+  }
+});
+
+    </script>
+</body>
+</html>

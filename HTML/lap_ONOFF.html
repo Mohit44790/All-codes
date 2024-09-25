@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  background: #14100a;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+section {
+  position: relative;
+  width: 450px;
+  height: 345px;
+  flex: 0 0 450px;
+}
+section .switch {
+  display: none;
+}
+section .lamp {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  --line-d: path('M40,105V240');
+  --pommel-cy: 240px;
+  --bulb-fill: #ccc;
+  --glow-fill: none;
+}
+section .lamp use {
+  cursor: pointer;
+}
+.switch:checked + .lamp {
+  --line-d: path('M40,105V280');
+  --pommel-cy: 280px;
+  --bulb-fill: #ff0;
+  --glow-fill: url(#light);
+}
+section img {
+  position: absolute;
+  top: 115px;
+  left: 130px;
+  width: 225px;
+  filter: brightness(30%);
+}
+section:has(:checked) img {
+  filter: drop-shadow(5px 5px 3px black);
+}
+    </style>
+</head>
+<body>
+    <svg width="0" height="0">
+        <symbol id="lamp" viewBox="0 0 600 500">
+          <radialGradient id="light" cx="100" cy="10" fx="112" fy="75" r="470" gradientUnits="userSpaceOnUse">
+            <stop style="stop-color:#ffd;stop-opacity:0.6" offset="0" />
+            <stop style="stop-color:#ff8;stop-opacity:0" offset="1" />
+          </radialGradient>
+          <path style="fill:none;stroke:#784421;stroke-width:2;d:var(--line-d)" />
+          <circle style="fill:#f00;cy:var(--pommel-cy)" cx="40" r="5" />
+          <circle cx="40" cy="90" r="20" fill="#55747d" />
+          <g transform="rotate(-45,40,90)">
+            <rect width="55" height="10" x="35" y="85" />
+            <rect width="10" height="3" x="35" y="81" />
+            <rect width="10" height="3" x="35" y="96" />
+          </g>
+          <path style="fill:var(--glow-fill);pointer-events:none" d="M 90,90 175,500 H 600 V 190 L 140,65" />
+          <circle style="fill:var(--bulb-fill)" cx="112" cy="75" r="10" />
+          <path d="M 140,68 C 77,8 38,23 90,90 Z" fill="#e4f6fb" />
+        </symbol>
+      </svg>
+      
+      <section>
+      <label><input class="switch" type="checkbox"><svg class="lamp"><use href="#lamp" /></svg></label>
+      <img src="https://images.unsplash.com/photo-1556150443-7254ffb98961?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzI2MTM3NDk&ixlib=rb-4.0.3&q=80&w=400" alt="A group of penguins walking in a single-file line on a rocky shore. " title="Penguin photo by Yomex Owo for Unsplash">
+      </section>
+      
+      <section>
+      <label><input class="switch" type="checkbox"><svg class="lamp"><use href="#lamp" /></svg></label>
+      <img src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80 " title="Penguin photo by Rebekah Blocker for Unsplash">
+      </section>
+      
+      <section>
+      <label><input class="switch" type="checkbox"><svg class="lamp"><use href="#lamp" /></svg></label>
+      <img src="https://images.unsplash.com/photo-1497752531616-c3afd9760a11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80 " title="Puffin photo by Jolan Wathelet for Unsplash">
+      </section>
+      
+      <section>
+      <label><input class="switch" type="checkbox"><svg class="lamp"><use href="#lamp" /></svg></label>
+      <img src="https://images.unsplash.com/photo-1471277492184-078d3fe6b419?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzI2MTM5MDc&ixlib=rb-4.0.3&q=80&w=400" alt="A puffin standing on a rocky ledge over water. " title="Puffin photo by Jonatan Pie for Unsplash">
+      </section>
+</body>
+</html>
